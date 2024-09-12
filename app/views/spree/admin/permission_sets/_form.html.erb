@@ -35,12 +35,14 @@
           end
       } %>
       <% ['Read Permissions', 'Manage Permissions', 'Other Permissions'].each do |title| %>
+      <% if p_groups[title].present? %>
         <%= render 'spree/admin/shared/checkbox_list_pane', {
             items: p_groups[title],
             title: title,
             is_checked: lambda { |x| @permission_set.permissions.include? x },
             field: 'permission_set[permission_ids][]'
         } %>
+      <% end %>
       <% end %>
     </div>
     <%= f.error_message_on :permissions %>
