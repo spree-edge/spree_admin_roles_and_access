@@ -13,6 +13,7 @@ module SpreeAdminRolesAndAccess
         base.validates :permission_sets, length: { minimum: 1, too_short: :atleast_one_permission_set_is_required }, on: :update
 
         base.scope :custom_role, lambda { where(is_default: true) }
+        base.scope :default, lambda { where(name: "default") }
       end
 
       def has_permission?(permission_title)
